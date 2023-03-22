@@ -10,6 +10,8 @@ import './index.less';
 
 class Spreadsheet {
   constructor(selectors, options = {}) {
+
+    console.log("fork")
     let targetEl = selectors;
     this.options = { showBottomBar: true, ...options };
     this.sheetIndex = 1;
@@ -56,6 +58,39 @@ class Spreadsheet {
     return d;
   }
 
+  getCurrentSheetIndex() {
+    const allTabs = this.bottombar.getAllTabs();
+    console.log('All tabs', allTabs)
+    for (let i = 0; i < allTabs.length; i++) {
+      console.log('Element of all tabs', allTabs[i].el)
+      if (allTabs[i].el.classList.contains('active')) {
+        return i
+      }
+    }
+  }
+
+
+  addListeners() {
+    const allTabs = this.bottombar.getAllTabs();
+    allTabs.forEach((tab, index) => {
+      tab.on('click', () => {
+        console.log("index", index)
+        return index
+      });
+    });
+  }
+
+  changeSheet(name) {
+    this.sheet.trigger('change', name);
+  }
+
+  createTempSheet(data) {
+    const d = new DataProxy(data.name, this.options);
+    d.change = (...args) => {
+      this.sheet.trigger('change', ...args);
+    };
+  }
+
   deleteSheet() {
     if (this.bottombar === null) return;
 
@@ -68,6 +103,7 @@ class Spreadsheet {
   }
 
   loadData(data) {
+    console.log("xxxxxx")
     const ds = Array.isArray(data) ? data : [data];
     if (this.bottombar !== null) {
       this.bottombar.clear();
@@ -84,6 +120,10 @@ class Spreadsheet {
       }
     }
     return this;
+  }
+
+  loadTabData(data) {
+    this.sheet.resetData(data);
   }
 
   getData() {

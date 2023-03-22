@@ -27,7 +27,7 @@ class DropdownMore extends Dropdown {
     this.setContentChildren(...eles);
   }
 
-  setTitle() {}
+  setTitle() { }
 }
 
 const menuItems = [
@@ -53,7 +53,7 @@ class ContextMenu {
       .css('width', '160px')
       .children(...buildMenu.call(this))
       .hide();
-    this.itemClick = () => {};
+    this.itemClick = () => { };
   }
 
   hide() {
@@ -71,10 +71,10 @@ class ContextMenu {
 }
 
 export default class Bottombar {
-  constructor(addFunc = () => {},
-    swapFunc = () => {},
-    deleteFunc = () => {},
-    updateFunc = () => {}) {
+  constructor(addFunc = () => { },
+    swapFunc = () => { },
+    deleteFunc = () => { },
+    updateFunc = () => { }) {
     this.swapFunc = swapFunc;
     this.updateFunc = updateFunc;
     this.dataNames = [];
@@ -97,6 +97,11 @@ export default class Bottombar {
         ),
       ),
     );
+  }
+
+  getAllTabs() {
+    // return this.activeEl;
+    return this.items;
   }
 
   addItem(name, active, options) {
