@@ -11,7 +11,7 @@ import {
 const cellPaddingWidth = 5;
 const tableFixedHeaderCleanStyle = { fillStyle: '#f4f5f8' };
 const tableGridStyle = {
-  fillStyle: '#fff',
+  fillStyle: '#f00',
   lineWidth: thinLineWidth,
   strokeStyle: '#e6e6e6',
 };
