@@ -9,7 +9,7 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/myliang/x-spreadsheet.svg)
 [![Join the chat at https://gitter.im/x-datav/spreadsheet](https://badges.gitter.im/x-datav/spreadsheet.svg)](https://gitter.im/x-datav/spreadsheet?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-> A web-based JavaScript spreadsheet
+> Customized spreadsheet based on https://github.com/myliang/x-spreadsheet 
 
 <p align="center">
   <a href="https://github.com/myliang/x-spreadsheet">
@@ -17,9 +17,6 @@
   </a>
 </p>
 
-## Document
-* en
-* [zh-cn 中文](https://hondrytravis.github.io/x-spreadsheet-doc/)
 
 ## CDN
 ```html

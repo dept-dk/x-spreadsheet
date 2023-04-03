@@ -1,7 +1,7 @@
 {
   "name": "dept-x-data-spreadsheet",
-  "version": "1.2.0",
-  "description": "a javascript xpreadsheet",
+  "version": "1.3.0",
+  "description": "customized javascript xpreadsheet",
   "types": "src/index.d.ts",
   "main": "src/index.js",
   "files": [

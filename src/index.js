@@ -60,7 +60,8 @@ class Spreadsheet {
 
   getCurrentSheetIndex() {
     const allTabs = this.bottombar.getAllTabs();
-    console.log('All tabs', allTabs)
+    console.log("whazzup");
+    console.log('All tabs', allTabs);
     for (let i = 0; i < allTabs.length; i++) {
       console.log('Element of all tabs', allTabs[i].el)
       if (allTabs[i].el.classList.contains('active')) {
