@@ -14282,6 +14282,7 @@ function () {
     key: "getCurrentSheetIndex",
     value: function getCurrentSheetIndex() {
       var allTabs = this.bottombar.getAllTabs();
+      console.log("whazzup");
       console.log('All tabs', allTabs);
 
       for (var i = 0; i < allTabs.length; i++) {

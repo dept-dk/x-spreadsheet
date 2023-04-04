@@ -76,6 +76,7 @@ class Spreadsheet {
     allTabs.forEach((tab, index) => {
       tab.on('click', () => {
         console.log("index", index)
+        this.sheet.trigger('change', { sheetIndex: index });
         return index
       });
     });
