@@ -41,6 +41,8 @@ class Spreadsheet {
     if (this.bottombar !== null) {
       rootEl.child(this.bottombar.el);
     }
+
+
   }
 
   addSheet(name, active = true) {
@@ -121,6 +123,7 @@ class Spreadsheet {
         }
       }
     }
+    this.addListeners();
     return this;
   }
 

@@ -14296,10 +14296,17 @@ function () {
   }, {
     key: "addListeners",
     value: function addListeners() {
+      var _this3 = this;
+
       var allTabs = this.bottombar.getAllTabs();
       allTabs.forEach(function (tab, index) {
         tab.on('click', function () {
           console.log("index", index);
+
+          _this3.sheet.trigger('change', {
+            sheetIndex: index
+          });
+
           return index;
         });
       });
@@ -14312,18 +14319,18 @@ function () {
   }, {
     key: "createTempSheet",
     value: function createTempSheet(data) {
-      var _this3 = this;
+      var _this4 = this;
 
       var d = new _core_data_proxy__WEBPACK_IMPORTED_MODULE_1__["default"](data.name, this.options);
 
       d.change = function () {
-        var _this3$sheet;
+        var _this4$sheet;
 
         for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
           args[_key2] = arguments[_key2];
         }
 
-        (_this3$sheet = _this3.sheet).trigger.apply(_this3$sheet, ['change'].concat(args));
+        (_this4$sheet = _this4.sheet).trigger.apply(_this4$sheet, ['change'].concat(args));
       };
     }
   }, {
