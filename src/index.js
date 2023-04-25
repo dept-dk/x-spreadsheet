@@ -83,7 +83,7 @@ class Spreadsheet {
         this.activeIndex = index;
         this.sheet.trigger('change', { sheetIndex: index, eventType: 'tabClick' });
         const activeTabItem = this.bottombar.getItemByIndex(index)
-        this.bottombar.clickSwap(activeTabItem);
+        this.bottombar.clickSwap2(activeTabItem);
       });
     });
   }

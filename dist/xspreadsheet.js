@@ -14236,12 +14236,19 @@ function () {
       var d = _this.datas[index];
 
       _this.sheet.resetData(d);
+
+      _this.sheet.trigger('change', {
+        eventType: 'swapFunc',
+        sheetIndex: index
+      });
     }, function () {
       _this.deleteSheet();
     }, function (index, value) {
       _this.datas[index].name = value;
 
-      _this.sheet.trigger('change');
+      _this.sheet.trigger('change', {
+        eventType: 'updateFunc'
+      });
     }) : null;
     this.data = this.addSheet();
     var rootEl = Object(_component_element__WEBPACK_IMPORTED_MODULE_0__["h"])('div', "".concat(_config__WEBPACK_IMPORTED_MODULE_4__["cssPrefix"])).on('contextmenu', function (evt) {
@@ -14311,7 +14318,8 @@ function () {
           _this3.activeIndex = index;
 
           _this3.sheet.trigger('change', {
-            sheetIndex: index
+            sheetIndex: index,
+            eventType: 'tabClick'
           });
 
           var activeTabItem = _this3.bottombar.getItemByIndex(index);
@@ -14355,7 +14363,9 @@ function () {
       if (oldIndex >= 0) {
         this.datas.splice(oldIndex, 1);
         if (nindex >= 0) this.sheet.resetData(this.datas[nindex]);
-        this.sheet.trigger('change');
+        this.sheet.trigger('change', {
+          eventType: 'deleteSheet'
+        });
       }
     }
   }, {
