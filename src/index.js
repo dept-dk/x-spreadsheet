@@ -27,11 +27,12 @@ class Spreadsheet {
     }, (index) => {
       const d = this.datas[index];
       this.sheet.resetData(d);
+      this.sheet.trigger('change', { eventType: 'swapFunc', sheetIndex: index });
     }, () => {
       this.deleteSheet();
     }, (index, value) => {
       this.datas[index].name = value;
-      this.sheet.trigger('change');
+      this.sheet.trigger('change', { eventType: 'updateFunc' });
     }) : null;
     this.data = this.addSheet();
     const rootEl = h('div', `${cssPrefix}`)
@@ -80,7 +81,7 @@ class Spreadsheet {
       tab.on('click', () => {
         console.log("index", index)
         this.activeIndex = index;
-        this.sheet.trigger('change', { sheetIndex: index });
+        this.sheet.trigger('change', { sheetIndex: index, eventType: 'tabClick' });
         const activeTabItem = this.bottombar.getItemByIndex(index)
         this.bottombar.clickSwap(activeTabItem);
       });
@@ -105,7 +106,7 @@ class Spreadsheet {
     if (oldIndex >= 0) {
       this.datas.splice(oldIndex, 1);
       if (nindex >= 0) this.sheet.resetData(this.datas[nindex]);
-      this.sheet.trigger('change');
+      this.sheet.trigger('change', { eventType: 'deleteSheet' });
     }
   }
 
