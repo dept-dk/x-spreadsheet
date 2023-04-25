@@ -183,7 +183,9 @@ export default class Bottombar {
   clickSwap2(item) {
     const index = this.items.findIndex(it => it === item);
     this.clickSwap(item);
-    this.activeEl.toggle();
+    if (this.activeEl !== null) {
+      this.activeEl.toggle();
+    }
     this.swapFunc(index);
   }
 

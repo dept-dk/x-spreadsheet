@@ -14392,6 +14392,7 @@ function () {
         }
       }
 
+      this.bottombar.clickSwap2(this.activeIndex);
       this.addListeners();
       return this;
     }
