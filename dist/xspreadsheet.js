@@ -929,6 +929,11 @@ function () {
       return this.items;
     }
   }, {
+    key: "getItemByIndex",
+    value: function getItemByIndex(index) {
+      return this.items[index];
+    }
+  }, {
     key: "addItem",
     value: function addItem(name, active, options) {
       var _this6 = this;
@@ -14214,6 +14219,7 @@ function () {
       showBottomBar: true
     }, options);
     this.sheetIndex = 1;
+    this.activeIndex = 0;
     this.datas = [];
 
     if (typeof selectors === 'string') {
@@ -14302,12 +14308,15 @@ function () {
       allTabs.forEach(function (tab, index) {
         tab.on('click', function () {
           console.log("index", index);
+          _this3.activeIndex = index;
 
           _this3.sheet.trigger('change', {
             sheetIndex: index
           });
 
-          return index;
+          var activeTabItem = _this3.bottombar.getItemByIndex(index);
+
+          _this3.bottombar.clickSwap(activeTabItem);
         });
       });
     }
