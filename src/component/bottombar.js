@@ -104,6 +104,10 @@ export default class Bottombar {
     return this.items;
   }
 
+  getItemByIndex(index) {
+    return this.items[index];
+  }
+
   addItem(name, active, options) {
     this.dataNames.push(name);
     const item = h('li', active ? 'active' : '').child(name);

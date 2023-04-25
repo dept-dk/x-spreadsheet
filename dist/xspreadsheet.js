@@ -14373,6 +14373,7 @@ function () {
         }
       }
 
+      this.addListeners();
       return this;
     }
   }, {

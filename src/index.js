@@ -15,6 +15,7 @@ class Spreadsheet {
     let targetEl = selectors;
     this.options = { showBottomBar: true, ...options };
     this.sheetIndex = 1;
+    this.activeIndex = 0;
     this.datas = [];
     if (typeof selectors === 'string') {
       targetEl = document.querySelector(selectors);
@@ -78,8 +79,10 @@ class Spreadsheet {
     allTabs.forEach((tab, index) => {
       tab.on('click', () => {
         console.log("index", index)
+        this.activeIndex = index;
         this.sheet.trigger('change', { sheetIndex: index });
-        return index
+        const activeTabItem = this.bottombar.getItemByIndex(index)
+        this.bottombar.clickSwap(activeTabItem);
       });
     });
   }
