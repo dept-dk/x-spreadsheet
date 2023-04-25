@@ -14324,7 +14324,7 @@ function () {
 
           var activeTabItem = _this3.bottombar.getItemByIndex(index);
 
-          _this3.bottombar.clickSwap(activeTabItem);
+          _this3.bottombar.clickSwap2(activeTabItem);
         });
       });
     }
