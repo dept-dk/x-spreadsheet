@@ -127,7 +127,9 @@ class Spreadsheet {
         }
       }
     }
-    this.bottombar.clickSwap2(this.activeIndex);
+
+    const activeItem = this.bottombar.getItemByIndex(this.activeIndex);
+    this.bottombar.clickSwap2(activeItem);
     this.addListeners();
     return this;
   }
