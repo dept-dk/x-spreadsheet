@@ -1044,7 +1044,11 @@ function () {
         return it === item;
       });
       this.clickSwap(item);
-      this.activeEl.toggle();
+
+      if (this.activeEl !== null) {
+        this.activeEl.toggle();
+      }
+
       this.swapFunc(index);
     }
   }, {
