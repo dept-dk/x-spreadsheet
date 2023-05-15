@@ -1055,6 +1055,7 @@ function () {
     key: "clickSwap",
     value: function clickSwap(item) {
       if (this.activeEl !== null) {
+        // console.log(this.activeEl)
         this.activeEl.toggle();
       }
 
@@ -14217,7 +14218,7 @@ function () {
 
     _classCallCheck(this, Spreadsheet);
 
-    console.log("fork");
+    // console.log("fork")
     var targetEl = selectors;
     this.options = _objectSpread({
       showBottomBar: true
@@ -14230,13 +14231,15 @@ function () {
       targetEl = document.querySelector(selectors);
     }
 
-    this.bottombar = this.options.showBottomBar ? new _component_bottombar__WEBPACK_IMPORTED_MODULE_3__["default"](function () {
+    this.bottombar = this.options.showBottomBar ? new _component_bottombar__WEBPACK_IMPORTED_MODULE_3__["default"]( // addFunc
+    function () {
       if (_this.options.mode === 'read') return;
 
       var d = _this.addSheet();
 
       _this.sheet.resetData(d);
-    }, function (index) {
+    }, // swapFunc
+    function (index) {
       var d = _this.datas[index];
 
       _this.sheet.resetData(d);
@@ -14245,9 +14248,11 @@ function () {
         eventType: 'swapFunc',
         sheetIndex: index
       });
-    }, function () {
+    }, // deleteFunc
+    function () {
       _this.deleteSheet();
-    }, function (index, value) {
+    }, // updateFunc
+    function (index, value) {
       _this.datas[index].name = value;
 
       _this.sheet.trigger('change', {
@@ -14298,13 +14303,10 @@ function () {
   }, {
     key: "getCurrentSheetIndex",
     value: function getCurrentSheetIndex() {
-      var allTabs = this.bottombar.getAllTabs();
-      console.log("whazzup");
-      console.log('All tabs', allTabs);
+      var allTabs = this.bottombar.getAllTabs(); // console.log('All tabs', allTabs);
 
       for (var i = 0; i < allTabs.length; i++) {
-        console.log('Element of all tabs', allTabs[i].el);
-
+        // console.log('Element of all tabs', allTabs[i].el)
         if (allTabs[i].el.classList.contains('active')) {
           return i;
         }
@@ -14318,7 +14320,7 @@ function () {
       var allTabs = this.bottombar.getAllTabs();
       allTabs.forEach(function (tab, index) {
         tab.on('click', function () {
-          console.log("index", index);
+          // console.log("index", index)
           _this3.activeIndex = index;
 
           _this3.sheet.trigger('change', {
@@ -14375,7 +14377,7 @@ function () {
   }, {
     key: "loadData",
     value: function loadData(data) {
-      console.log("xxxxxx");
+      // console.log("xxxxxx")
       var ds = Array.isArray(data) ? data : [data];
 
       if (this.bottombar !== null) {
@@ -14396,7 +14398,8 @@ function () {
         }
       }
 
-      this.bottombar.clickSwap2(this.activeIndex);
+      var activeItem = this.bottombar.getItemByIndex(this.activeIndex);
+      this.bottombar.clickSwap2(activeItem);
       this.addListeners();
       return this;
     }

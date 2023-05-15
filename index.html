@@ -83,30 +83,38 @@
           ],
         }
       })
-        .loadData([{
-          freeze: 'B3',
-          styles: [
+        .loadData(
+          [
             {
-              bgcolor: '#00FF00',
-              textwrap: true,
-              color: '#900b09',
-              border: {
-                top: ['thin', '#0366d6'],
-                bottom: ['thin', '#0366d6'],
-                right: ['thin', '#0366d6'],
-                left: ['thin', '#0366d6'],
+              freeze: 'B3',
+              styles: [
+                {
+                  bgcolor: '#00FF00',
+                  textwrap: true,
+                  color: '#900b09',
+                  border: {
+                    top: ['thin', '#0366d6'],
+                    bottom: ['thin', '#0366d6'],
+                    right: ['thin', '#0366d6'],
+                    left: ['thin', '#0366d6'],
+                  },
+                  font: {
+                    bold: true
+                  }
+                },
+              ],
+              merges: [
+                'C3:D4',
+              ],
+              cols: {
+                len: 10,
+                2: { width: 200 },
               },
+              rows,
             },
-          ],
-          merges: [
-            'C3:D4',
-          ],
-          cols: {
-            len: 10,
-            2: { width: 200 },
-          },
-          rows,
-        }, { name: 'sheet-test', rows: rows10 }]).change((cdata) => {
+            { name: 'sheet-test', rows: rows10 }
+          ]
+        ).change((cdata) => {
           // console.log(cdata);
           console.log('>>>', xs.getData());
         });

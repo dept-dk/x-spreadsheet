@@ -11,30 +11,43 @@ import './index.less';
 class Spreadsheet {
   constructor(selectors, options = {}) {
 
-    console.log("fork")
+    // console.log("fork")
     let targetEl = selectors;
     this.options = { showBottomBar: true, ...options };
     this.sheetIndex = 1;
     this.activeIndex = 0;
     this.datas = [];
+
     if (typeof selectors === 'string') {
       targetEl = document.querySelector(selectors);
     }
-    this.bottombar = this.options.showBottomBar ? new Bottombar(() => {
-      if (this.options.mode === 'read') return;
-      const d = this.addSheet();
-      this.sheet.resetData(d);
-    }, (index) => {
-      const d = this.datas[index];
-      this.sheet.resetData(d);
-      this.sheet.trigger('change', { eventType: 'swapFunc', sheetIndex: index });
-    }, () => {
-      this.deleteSheet();
-    }, (index, value) => {
-      this.datas[index].name = value;
-      this.sheet.trigger('change', { eventType: 'updateFunc' });
-    }) : null;
+
+    this.bottombar = this.options.showBottomBar ? new Bottombar(
+      // addFunc
+      () => {
+        if (this.options.mode === 'read') return;
+        const d = this.addSheet();
+        this.sheet.resetData(d);
+      },
+      // swapFunc
+      (index) => {
+        const d = this.datas[index];
+        this.sheet.resetData(d);
+        this.sheet.trigger('change', { eventType: 'swapFunc', sheetIndex: index });
+      },
+      // deleteFunc
+      () => {
+        this.deleteSheet();
+      },
+      // updateFunc
+      (index, value) => {
+        this.datas[index].name = value;
+        this.sheet.trigger('change', { eventType: 'updateFunc' });
+      }
+    ) : null;
+
     this.data = this.addSheet();
+
     const rootEl = h('div', `${cssPrefix}`)
       .on('contextmenu', evt => evt.preventDefault());
     // create canvas element
@@ -43,8 +56,6 @@ class Spreadsheet {
     if (this.bottombar !== null) {
       rootEl.child(this.bottombar.el);
     }
-
-
   }
 
   addSheet(name, active = true) {
@@ -64,10 +75,9 @@ class Spreadsheet {
 
   getCurrentSheetIndex() {
     const allTabs = this.bottombar.getAllTabs();
-    console.log("whazzup");
-    console.log('All tabs', allTabs);
+    // console.log('All tabs', allTabs);
     for (let i = 0; i < allTabs.length; i++) {
-      console.log('Element of all tabs', allTabs[i].el)
+      // console.log('Element of all tabs', allTabs[i].el)
       if (allTabs[i].el.classList.contains('active')) {
         return i
       }
@@ -79,7 +89,7 @@ class Spreadsheet {
     const allTabs = this.bottombar.getAllTabs();
     allTabs.forEach((tab, index) => {
       tab.on('click', () => {
-        console.log("index", index)
+        // console.log("index", index)
         this.activeIndex = index;
         this.sheet.trigger('change', { sheetIndex: index, eventType: 'tabClick' });
         const activeTabItem = this.bottombar.getItemByIndex(index)
@@ -111,7 +121,7 @@ class Spreadsheet {
   }
 
   loadData(data) {
-    console.log("xxxxxx")
+    // console.log("xxxxxx")
     const ds = Array.isArray(data) ? data : [data];
     if (this.bottombar !== null) {
       this.bottombar.clear();

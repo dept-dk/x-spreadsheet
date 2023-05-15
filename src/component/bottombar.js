@@ -191,7 +191,7 @@ export default class Bottombar {
 
   clickSwap(item) {
     if (this.activeEl !== null) {
-      console.log(this.activeEl)
+      // console.log(this.activeEl)
       this.activeEl.toggle();
     }
     this.activeEl = item;
