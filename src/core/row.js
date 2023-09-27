@@ -110,7 +110,7 @@ class Rows {
   }
 
   // what: all | format | text
-  copyPaste(srcCellRange, dstCellRange, what, autofill = false, cb = () => {}) {
+  copyPaste(srcCellRange, dstCellRange, what, autofill = false, cb = () => { }) {
     const {
       sri, sci, eri, eci,
     } = srcCellRange;
@@ -297,7 +297,8 @@ class Rows {
         if (what === 'all') {
           delete row.cells[ci];
         } else if (what === 'text') {
-          if (cell.text) delete cell.text;
+          // if (cell.text) delete cell.text;
+          if (cell.text) { cell.text = ""; };
           if (cell.value) delete cell.value;
         } else if (what === 'format') {
           if (cell.style !== undefined) delete cell.style;
